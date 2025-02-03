@@ -4,12 +4,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 char* hexToBinary(char* hexString){
     size_t i = 0;
-    int n = 500;
-    char tempString[5]; //size 5 to account for null char
-    char *binaryString = (char*) malloc(sizeof(char) * n);
+    size_t length = strlen(hexString);
+    char *binaryString = (char*) malloc(sizeof(char) * length);
     // Initialize the binaryString to an empty string (so it doesnt print weird symbols)
     binaryString[0] = '\0';
     // check if the string begins with 0X
@@ -91,11 +89,10 @@ int main(int argc, char *argv[])
 
     binaryString = hexToBinary(hexString);
     if (binaryString == NULL){
-        return -1;
+        return -1; // in case allocation fails, return -1 (error)
     }
-
     printf("\nBinary string: %s", binaryString);
-
+    // free the allocated memory
     free(binaryString);
     return 0;
 }
